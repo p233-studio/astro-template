@@ -35,7 +35,12 @@ export default defineConfig({
       modules: modulesConfig,
       postcss: {
         plugins: [
-          cssnano({ preset: ["cssnano-preset-advanced", { discardUnused: { fontFace: false } }] })
+          cssnano({
+            preset: [
+              "cssnano-preset-advanced",
+              { discardUnused: { fontFace: false }, reduceIdents: false, zindex: false }
+            ]
+          })
         ]
       },
       preprocessorOptions: {
@@ -43,6 +48,9 @@ export default defineConfig({
           additionalData: `@use "~/styles/_common" as *;`
         }
       }
+    },
+    build: {
+      cssMinify: false
     },
     resolve: {
       alias: [{ find: "~", replacement: "/src/" }]
