@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
 import playformCompress from "@playform/compress";
 
-// https://peiwen.lu/posts/hashing-collision-detectionn
+// https://peiwen.lu/posts/hashing-collision-detection
 let modulesConfig = { generateScopedName: "[local]-[hash:base64:4]" };
 if (process.env.NODE_ENV === "production") {
   const fileSet = {};
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
         hashSet[i] = true;
       });
     },
-    generateScopedName: "[hash:base64:2]"
+    generateScopedName: "[hash:base64:4]"
   };
 }
 
@@ -29,7 +29,7 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true
   },
-  integrations: [sitemap(), robotsTxt(), playformCompress()],
+  integrations: [sitemap(), robotsTxt(), playformCompress({ CSS: false })],
   vite: {
     css: {
       modules: modulesConfig,
